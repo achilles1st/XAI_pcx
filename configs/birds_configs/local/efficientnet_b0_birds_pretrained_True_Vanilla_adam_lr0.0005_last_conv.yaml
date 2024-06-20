@@ -1,0 +1,16 @@
+batch_size: 32
+ckpt_path: checkpoints/efficientnet_b0_birds_pretrained_True_Vanilla_adam_lr0.0005_last_conv/last.ckpt
+data_path: /CUB_200_2011
+dataset_name: birds
+device: cuda
+lamb: 0.0
+layer_name: last_conv
+loss: cross_entropy
+lr: 0.0005
+method: Vanilla
+model_name: efficientnet_b0
+num_epochs: 100
+optimizer: adam
+pretrained: true
+wandb_api_key: ''
+wandb_project_name: ''

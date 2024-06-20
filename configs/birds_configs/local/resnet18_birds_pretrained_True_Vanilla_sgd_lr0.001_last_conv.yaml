@@ -1,0 +1,16 @@
+batch_size: 32
+ckpt_path: checkpoints/resnet18_birds_pretrained_True_Vanilla_sgd_lr0.001_last_conv/last.ckpt
+data_path: /CUB_200_2011
+dataset_name: birds
+device: cuda
+lamb: 0.0
+layer_name: last_conv
+loss: cross_entropy
+lr: 0.001
+method: Vanilla
+model_name: resnet18
+num_epochs: 100
+optimizer: sgd
+pretrained: true
+wandb_api_key: ''
+wandb_project_name: ''

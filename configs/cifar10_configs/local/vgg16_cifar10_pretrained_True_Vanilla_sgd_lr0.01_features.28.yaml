@@ -1,0 +1,16 @@
+batch_size: 512
+ckpt_path: checkpoints/vgg16_cifar10_pretrained_True_Vanilla_sgd_lr0.01_features.28/last.ckpt
+data_path: /cifar10
+dataset_name: cifar10
+device: cuda
+lamb: 0.0
+layer_name: features.28
+loss: cross_entropy
+lr: 0.01
+method: Vanilla
+model_name: vgg16
+num_epochs: 100
+optimizer: sgd
+pretrained: true
+wandb_api_key: ''
+wandb_project_name: ''

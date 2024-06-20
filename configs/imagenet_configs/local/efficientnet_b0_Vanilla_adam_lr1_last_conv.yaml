@@ -1,0 +1,15 @@
+batch_size: 32
+ckpt_path: ''
+data_path: /ImageNet
+dataset_name: imagenet
+device: cuda
+lamb: 0.0
+layer_name: last_conv
+loss: cross_entropy
+lr: 1
+method: Vanilla
+model_name: efficientnet_b0
+num_epochs: 15
+optimizer: adam
+wandb_api_key: ''
+wandb_project_name: ''

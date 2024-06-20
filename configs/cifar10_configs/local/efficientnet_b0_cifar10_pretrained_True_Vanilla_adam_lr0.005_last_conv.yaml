@@ -1,0 +1,16 @@
+batch_size: 512
+ckpt_path: checkpoints/efficientnet_b0_cifar10_pretrained_True_Vanilla_adam_lr0.005_last_conv/last.ckpt
+data_path: /cifar10
+dataset_name: cifar10
+device: cuda
+lamb: 0.0
+layer_name: last_conv
+loss: cross_entropy
+lr: 0.005
+method: Vanilla
+model_name: efficientnet_b0
+num_epochs: 100
+optimizer: adam
+pretrained: true
+wandb_api_key: ''
+wandb_project_name: ''

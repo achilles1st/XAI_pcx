@@ -1,0 +1,12 @@
+torch==1.13.1
+torchvision==0.14.1
+zennit-crp
+pytorch-lightning
+pandas
+opencv-python
+wandb
+scikit-learn
+h5py
+dash_bootstrap_components
+umap
+umap-learn
