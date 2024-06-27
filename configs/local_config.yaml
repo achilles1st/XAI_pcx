@@ -1,5 +1,5 @@
-cifar10_dir: /cifar10
+cifar10_dir: C:/Users/tosic/XAI/pcx/datasets
 imagenet_dir: /ImageNet
 birds_dir: /hardd/CUB_200_2011
-checkpoint_dir: checkpoints
+checkpoint_dir: C:/Users/tosic/XAI/pcx/datasets/checkpoints
 local_batch_size: 32

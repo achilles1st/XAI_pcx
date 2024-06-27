@@ -20,10 +20,10 @@ from utils.lrp_composites import EpsilonComposite, GradientComposite
 def get_args():
     parser = argparse.ArgumentParser(description='Compute relevances and activations')
     parser.add_argument('--config_file', type=str,
-                        default="configs/imagenet_configs/local/efficientnet_b0_Vanilla_adam_lr1_last_conv.yaml"
+                        default="configs/cifar10_configs/local/vgg16_cifar10_pretrained_True_Vanilla_sgd_lr0.01_features.28.yaml"
                         )
-    parser.add_argument('--dataset', type=str, default="imagenet")
-    parser.add_argument('--class_id', type=int, default=407)
+    parser.add_argument('--dataset', type=str, default="cifar10")
+    parser.add_argument('--class_id', type=int, default=4)
     parser.add_argument('--split', type=str, default="train")
     return parser.parse_args()
 
@@ -43,7 +43,7 @@ def main(model_name,
         if "birds" in dataset_name_out:
             data_path_out = f"/mnt/CUB_200_2011"
     else:
-        with open("configs/local_config.yaml", "r") as stream:
+        with open("C:/Users/tosic/XAI/pcx/configs/local_config.yaml", "r") as stream:
             local_config = yaml.safe_load(stream)
             data_path_out = local_config[f'{dataset_name_out}_dir']
 
@@ -76,12 +76,24 @@ def main(model_name,
     dataset_subset = torch.utils.data.Subset(dataset, samples_of_class)
     print("Dataset loaded")
 
+    # Debugging: Print some samples from dataset_subset
+    print("Sample from dataset_subset:", dataset_subset[0])
+    print("Number of samples in dataset_subset:", len(dataset_subset))
+
     model = get_fn_model_loader(model_name)(ckpt_path=ckpt_path, n_class=dataset_in.num_classes)
     model = model.to(device)
     model.eval()
     print("Model loaded")
 
-    dataloader = DataLoader(dataset_subset, batch_size=batch_size, shuffle=False, num_workers=8)
+    # Set num_workers to 0 for debugging
+    # to use more worker you need to uncomment and only the code in cifar10.py
+    dataloader = DataLoader(dataset_subset, batch_size=batch_size, shuffle=False, num_workers=0)
+
+    # Debugging: Print the first batch from the DataLoader
+    for batch_idx, (data, target) in enumerate(dataloader):
+        print(f"Batch {batch_idx} - data shape: {data.shape}, target shape: {target.shape}")
+        if batch_idx == 0:
+            break
 
     attributor = CondAttribution(model)
     canonizer = get_canonizer(model_name)

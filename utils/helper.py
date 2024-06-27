@@ -7,7 +7,8 @@ from typing import List
 
 
 def load_config(config_path):
-    with open(config_path, "r") as stream:
+    base_path = "C:\\Users\\tosic\\XAI\\pcx"
+    with open(os.path.join(base_path, config_path), "r") as stream:
         try:
             config = yaml.safe_load(stream)
         except yaml.YAMLError as exc:

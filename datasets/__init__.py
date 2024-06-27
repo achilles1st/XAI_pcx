@@ -3,7 +3,7 @@ from typing import Callable
 from datasets.cifar10 import get_cifar10
 from datasets.dtd import get_dtd
 from datasets.imagenet import get_imagenet
-#from datasets.isic import get_isic
+# from datasets.isic import get_isic
 from datasets.isun import get_isun
 from datasets.lsun import get_lsun
 from datasets.lsunr import get_lsunr
@@ -20,7 +20,7 @@ DATASETS = {
     "lsun": get_lsun,
     "lsunr": get_lsunr,
     "isun": get_isun,
-    #"isic": get_isic,
+    # "isic": get_isic,
     "places365": get_places365,
 }
 

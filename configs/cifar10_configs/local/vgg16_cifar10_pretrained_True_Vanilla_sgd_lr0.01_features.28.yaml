@@ -1,6 +1,6 @@
 batch_size: 512
-ckpt_path: checkpoints/vgg16_cifar10_pretrained_True_Vanilla_sgd_lr0.01_features.28/last.ckpt
-data_path: /cifar10
+ckpt_path: C:/Users/tosic/XAI/pcx/checkpoints/vgg16_cifar10_pretrained_True_Vanilla_sgd_lr0.01_features.28/last.ckpt
+data_path: C:/Users/tosic/XAI/pcx/datasets
 dataset_name: cifar10
 device: cuda
 lamb: 0.0
