@@ -20,7 +20,7 @@ from visualization import FeatureVisualizationTarget
 
 this_file_path = os.path.dirname(os.path.realpath(__file__))
 data_base_path = os.path.join(this_file_path, '../../02_models_training/00_data')
-target_base_path = '/mnt/neuro/nas2/Work/Graz_plus_R2star/04_concepts/01_heatmaps/'
+target_base_path = 'C:/Users/tosic/StefanTosic/04_concepts/01_heatmaps/'
 
 with open(os.path.join(this_file_path, '../../01_data/05_bootstrap/ASPSF_bootstrap.json'), 'r') as infile:
   ASPSF_bootstrap = json.load(infile)
@@ -60,7 +60,7 @@ for config in [
 	weight_file = training_data['file']
 
 	# dataset
-	data_base_path = os.path.join(this_file_path, '../../02_models_training/00_data')
+	data_base_path = os.path.normpath(os.path.join(this_file_path, '../../02_models_training/00_data'))
 
 	with open(os.path.join(this_file_path, '../../01_data/05_bootstrap/ASPSF_bootstrap.json'), 'r') as infile:
 		ASPSF_bootstrap = json.load(infile)
@@ -166,13 +166,13 @@ for config in [
 					# print(rel_c_sorted[r_range[0]:r_range[1], c_id])
 					for d_id_index, d_id in enumerate(d_indices):
 						data_path = test_set.data_paths[d_id]
-						subject_name = data_path.split('/')[-1]
+						subject_name = data_path.split('\\')[-1]
 						image = nib.load(os.path.join(data_path, 'R2star.nii.gz'))
 						image_data, _ = test_set[d_id]
 						image_data = torch.unsqueeze(image_data, 0)
 						result = model(image_data.to(device))
 						heatmap = nib.Nifti1Image(ref_c[c_id][1][d_id_index], image.affine, header=image.header)
-						nib.save(heatmap, os.path.join(mode_target_base_path, 'ref_images', name, targets_name, f'rel_{vals_per_concept[c_id]:.3f}__channel_{c_id:02d}__data_index_{d_id_index:02d}__{subject_name}__{result[0][0]:.3f}_{result[0][1]:.3f}.nii.gz'))
+						nib.save(heatmap, os.path.normpath(os.path.join(mode_target_base_path, 'ref_images', name, targets_name, f'rel_{vals_per_concept[c_id]:.3f}__channel_{c_id:02d}__data_index_{d_id_index:02d}__{os.path.basename(subject_name)}__{result[0][0]:.3f}_{result[0][1]:.3f}.nii.gz')))
 
 				# ref_c = fv.get_max_reference(concept_ids, 'down_conv5', mode, r_range, composite=composite, rf=True, plot_fn=None, batch_size=6)
 				# d_c_sorted, rel_c_sorted, rf_c_sorted = load_maximization(os.path.join(mode_target_base_path, 'stats', name, targets_name, 'RelMax_sum_unnormed' if mode == 'relevance' else 'ActMax_sum_unnormed'), 'down_conv5')
